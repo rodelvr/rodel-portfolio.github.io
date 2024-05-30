@@ -272,24 +272,3 @@ function parseEndDate(timePeriod: string): Date {
     return new Date(); // Return null if end month or end year is missing
   }
 }
-
-// Function to format date as "MMM YYYY"
-function formatDate(date: Date): string {
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-  return `${monthNames[monthIndex]} ${year}`;
-}
