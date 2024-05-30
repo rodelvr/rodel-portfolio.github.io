@@ -11,6 +11,7 @@ interface JobExperience {
 interface CompanyExperience {
   company: string;
   logo: string;
+  website: string;
   jobs: JobExperience[];
   companyLocation: string;
 }
@@ -56,9 +57,8 @@ export default function Experience() {
     {
       company: "Solvimon",
       companyLocation: "Utrecht, Netherlands",
-      // timePeriod: "Jul 2023 - Jun 2024",
-      // totalTime: "1 year",
       logo: "/logos/solvimon_logo.jpeg",
+      website: "https://www.solvimon.com/",
       jobs: [
         {
           title: "Founding Engineer",
@@ -80,8 +80,7 @@ export default function Experience() {
       company: "Adyen",
       logo: "/logos/adyen_logo.png",
       companyLocation: "Amsterdam, Netherlands",
-      // timePeriod: "Jul 2018 - Jun 2023",
-      // totalTime: "5 years",
+      website: "https://www.adyen.com/",
       jobs: [
         {
           title: "Engineering Lead, Analytics & ML",
@@ -133,8 +132,7 @@ export default function Experience() {
       company: "ING",
       logo: "/logos/ing_logo_lion.png",
       companyLocation: "Amsterdam, Netherlands",
-      // timePeriod: "Jun 2016 - Jun 2018",
-      // totalTime: "2 years and 1 month",
+      website: "https://www.ing.nl/",
       jobs: [
         {
           title: "Data Scientist",
@@ -167,11 +165,17 @@ export default function Experience() {
               style={{ width: "90%", maxWidth: "500px", margin: "auto" }}
             >
               <div className="company-info flex items-center mb-4">
-                <img
-                  src={experience.logo}
-                  alt={`${experience.company} logo`}
-                  className="company-logo mr-4"
-                />
+                <a
+                  href={experience.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={experience.logo}
+                    alt={`${experience.company} logo`}
+                    className="company-logo mr-4"
+                  />
+                </a>
                 <div className="company-details flex flex-col">
                   <div className="company-name text-2xl font-semibold">
                     {experience.company}
