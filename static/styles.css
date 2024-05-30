@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Avoid Layout Shift */
+iconify-icon {
+  width: 1.5em;
+  height: 1.5em;
+  /* not sure why but this line fixes layout shifting in the work experience section but only for overflowing text */
+  aspect-ratio: 1 / 1;
+}
+
+iconify-icon svg {
+  object-fit: fill;
+}
+
+.company-section {
+  background-color: transparent;
+  /* Transparent background */
+  padding: 2rem;
+  border: 1px solid #ccc;
+  /* Visible border */
+  border-radius: 8px;
+}
+
+.company-logo {
+  max-width: 50px;
+}
+
+.company-name {
+  align-self: left;
+}
+
+.company-info {
+  margin-bottom: 1rem;
+  /* Adjust as needed for spacing between company info and jobs */
+}
+
+.company-jobs {
+  margin-top: 1rem;
+  /* Adjust as needed for spacing between company info and jobs */
+}
+
+.job-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.horizontal-separator {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 8px 0;
+  /* Adjust as needed for spacing between job experiences */
+}
+
+.separator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+  /* Ensure equal top and bottom margins */
+}
+
+.vertical-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: #000;
+  /* Adjust color as needed */
+  border-radius: 50%;
+  margin: 4px 0;
+  /* Ensure vertical spacing between dots */
+}
+
+.relative:hover .tooltip {
+  opacity: 1;
+}
