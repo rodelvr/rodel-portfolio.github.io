@@ -13,7 +13,6 @@ interface CompanyExperience {
   logo: string;
   jobs: JobExperience[];
   companyLocation: string;
-  totalTime: string;
 }
 
 function JobDetails({ job }: { job: JobExperience }) {
@@ -28,10 +27,18 @@ function JobDetails({ job }: { job: JobExperience }) {
     ))
     : null;
 
+  // Include the time spent in the job in the time period
+  const jobTimePeriod = job.timePeriod.includes("(")
+    ? job.timePeriod
+    : `${job.timePeriod} (${calculateTotalTime([job])})`;
+
   return (
-    <div className="job-experience mb-2" style={{ width: "90%" }}>
+    <div
+      className={`job-experience mb-2 ${isExpanded ? "expanded" : ""}`}
+      style={{ width: "90%" }}
+    >
       <h2 className="job-title">{job.title}</h2>
-      <p className="job-time-period mb-1">{job.timePeriod}</p>
+      <p className="job-time-period mb-1">{jobTimePeriod}</p>
       <p className="job-location">{job.location}</p>
       <button
         onClick={() => setIsExpanded(!isExpanded)}
@@ -49,12 +56,13 @@ export default function Experience() {
     {
       company: "Solvimon",
       companyLocation: "Utrecht, Netherlands",
-      totalTime: "1 year",
+      // timePeriod: "Jul 2023 - Jun 2024",
+      // totalTime: "1 year",
       logo: "/logos/solvimon_logo.jpeg",
       jobs: [
         {
           title: "Founding Engineer",
-          timePeriod: "Jul 2023 - Jun 2024 (1 year)",
+          timePeriod: "Jul 2023 - now",
           location: "Utrecht, Netherlands",
           description: "Read more",
           details: `
@@ -72,11 +80,12 @@ export default function Experience() {
       company: "Adyen",
       logo: "/logos/adyen_logo.png",
       companyLocation: "Amsterdam, Netherlands",
-      totalTime: "5 years",
+      // timePeriod: "Jul 2018 - Jun 2023",
+      // totalTime: "5 years",
       jobs: [
         {
           title: "Engineering Lead, Analytics & ML",
-          timePeriod: "Jan 2023 - Jun 2023 (6 months)",
+          timePeriod: "Jan 2023 - Jun 2023",
           location: "Amsterdam, Netherlands",
           description: "Read more",
           details: `
@@ -87,7 +96,7 @@ export default function Experience() {
         },
         {
           title: "Tech Lead Manager, Machine Learning",
-          timePeriod: "Jan 2021 - Dec 2022 (2 years)",
+          timePeriod: "Jan 2021 - Dec 2022",
           location: "Amsterdam, Netherlands",
           description: "Read more",
           details: `
@@ -106,7 +115,7 @@ export default function Experience() {
         },
         {
           title: "Senior Machine Learning Scientist",
-          timePeriod: "Jul 2018 - Dec 2020 (2 years and 6 months)",
+          timePeriod: "Jul 2018 - Dec 2020",
           location: "Amsterdam, Netherlands",
           description: "Read more",
           details: `
@@ -124,11 +133,12 @@ export default function Experience() {
       company: "ING",
       logo: "/logos/ing_logo_lion.png",
       companyLocation: "Amsterdam, Netherlands",
-      totalTime: "2 years and 1 month",
+      // timePeriod: "Jun 2016 - Jun 2018",
+      // totalTime: "2 years and 1 month",
       jobs: [
         {
           title: "Data Scientist",
-          timePeriod: "Jun 2016 - Jun 2018 (2 years and 1 month)",
+          timePeriod: "Jun 2016 - Jun 2018",
           location: "Amsterdam, Netherlands",
           description: "Read more",
           details: `
@@ -169,8 +179,11 @@ export default function Experience() {
                   <div className="company-location">
                     {experience.companyLocation}
                   </div>
+                  {/* Calculate and display total time for the company */}
                   <div className="company-total-time">
-                    {experience.totalTime}
+                    {" "}
+                    {calculateTotalTime(experience.jobs)}
+                    {" "}
                   </div>
                 </div>
               </div>
@@ -200,4 +213,83 @@ export default function Experience() {
       </section>
     </>
   );
+}
+
+// Function to calculate total time at the company
+function calculateTotalTime(jobs: JobExperience[]): string {
+  if (jobs.length === 0) return "";
+
+  const startDates = jobs.map((job) => parseStartDate(job.timePeriod));
+  const endDates = jobs.map((job) => parseEndDate(job.timePeriod));
+
+  const minStartDate = new Date(
+    Math.min(...startDates.map((date) => date.getTime())),
+  );
+  const maxEndDate = new Date(
+    Math.max(...endDates.map((date) => date.getTime())),
+  );
+
+  const totalMonths =
+    (maxEndDate.getFullYear() - minStartDate.getFullYear()) * 12 +
+    (maxEndDate.getMonth() - minStartDate.getMonth()) + 1; // Adding 1 month
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  let totalTimeString = "";
+
+  if (years > 0) {
+    totalTimeString += `${years} ${years === 1 ? "year" : "years"}`;
+    if (months > 0) {
+      totalTimeString += ` and ${months} ${months === 1 ? "month" : "months"}`;
+    }
+  } else if (months > 0) {
+    totalTimeString += `${months} ${months === 1 ? "month" : "months"}`;
+  }
+
+  return totalTimeString;
+}
+
+// Function to parse start date from time period string
+function parseStartDate(timePeriod: string): Date {
+  const [start] = timePeriod.split(" - ");
+  const [startMonth, startYear] = start.split(" ");
+  return new Date(`${startMonth} 1, ${startYear}`);
+}
+
+// Function to parse end date from time period string
+function parseEndDate(timePeriod: string): Date {
+  const [, end] = timePeriod.split(" - ");
+  const [endMonth, endYear] = end.split(" ");
+
+  if (endYear && endYear.toLowerCase() === "now") {
+    return new Date(); // Return current date if end year is "now"
+  } else if (endMonth && endYear) {
+    // Construct the end date string and convert it to a Date object
+    const endDateString = `${endMonth} 1, ${endYear}`;
+    return new Date(endDateString);
+  } else {
+    return new Date(); // Return null if end month or end year is missing
+  }
+}
+
+// Function to format date as "MMM YYYY"
+function formatDate(date: Date): string {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+  return `${monthNames[monthIndex]} ${year}`;
 }

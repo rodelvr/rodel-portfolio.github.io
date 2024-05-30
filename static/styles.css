@@ -46,6 +46,18 @@ iconify-icon svg {
   font-weight: bold;
 }
 
+.job-experience {
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 200px;
+  /* Initial height */
+}
+
+.job-experience.expanded {
+  max-height: 1000px;
+  /* Expanded height */
+}
+
 .horizontal-separator {
   border: 0;
   border-top: 1px solid #ccc;
@@ -70,7 +82,7 @@ iconify-icon svg {
 .dot {
   width: 4px;
   height: 4px;
-  background-color: #000;
+  background-color: #625959;
   /* Adjust color as needed */
   border-radius: 50%;
   margin: 4px 0;
