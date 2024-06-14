@@ -96,15 +96,23 @@ export default function App({ Component }: PageProps) {
         >
         </script>
         <script
+          async
+          defer
+          src="https://www.googletagmanager.com/gtag/js?id=G-EXLP2XMEYX"
+        >
+        </script>
+        <script
+          defer
           dangerouslySetInnerHTML={{
             __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-EXLP2XMEYX');
-          `,
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EXLP2XMEYX');
+    `,
           }}
-        />
+        >
+        </script>
       </head>
       <body className="min-h-screen flex flex-col max-w-screen-xl mx-auto overflow-x-hidden">
         <header>

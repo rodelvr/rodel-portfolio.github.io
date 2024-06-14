@@ -187,6 +187,7 @@ export default function Experience() {
                     src={experience.logo}
                     alt={`${experience.company} logo`}
                     className="company-logo mr-4"
+                    style={{ width: "50px", height: "25%" }}
                   />
                 </a>
                 <div className="company-details flex flex-col">
