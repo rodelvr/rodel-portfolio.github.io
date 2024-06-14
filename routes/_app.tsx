@@ -106,38 +106,38 @@ export default function App({ Component }: PageProps) {
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col max-w-screen-xl mx-auto">
+      <body className="min-h-screen flex flex-col max-w-screen-xl mx-auto overflow-x-hidden">
         <header>
           <AppBar />
         </header>
-        <main>
+        <main className="flex-grow">
           <Component />
         </main>
-        <footer className="mt-auto footer w-auto m-2 p-4 bg-neutral text-neutral-content rounded-lg">
-          <aside>
-            <span>
+        <footer className="mt-auto w-full m-2 p-4 bg-neutral text-neutral-content rounded-lg">
+          <aside className="flex flex-col md:flex-row md:justify-between md:items-center w-full">
+            <span className="mb-2 md:mb-0">
               <a
                 href="https://github.com/rodelvr/rodel-portfolio.github.io"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:underline"
               >
-                Source
+                <Icon icon="ic:outline-source" width="24" height="24" />
               </a>
             </span>
+            <nav className="flex justify-center gap-4">
+              {socials.map((social) => (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  aria-label={social.name}
+                  key={social.name}
+                >
+                  <Icon icon={social.icon} width="24" height="24" />
+                </a>
+              ))}
+            </nav>
           </aside>
-          <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-            {socials.map((social) => (
-              <a
-                href={social.url}
-                target="_blank"
-                aria-label={social.name}
-                key={social.name}
-              >
-                <Icon icon={social.icon} width="24" height="24" />
-              </a>
-            ))}
-          </nav>
         </footer>
       </body>
     </html>

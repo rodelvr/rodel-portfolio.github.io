@@ -9,6 +9,7 @@ import * as $api_themes_index from "./routes/api/themes/index.ts";
 import * as $index from "./routes/index.tsx";
 import * as $AppBar from "./islands/AppBar.tsx";
 import * as $Blogs from "./islands/Blogs.tsx";
+import * as $DynamicElement from "./islands/DynamicElement.tsx";
 import * as $Experience from "./islands/Experience.tsx";
 import * as $Hero from "./islands/Hero.tsx";
 import * as $SpinningModel from "./islands/SpinningModel.tsx";
@@ -29,6 +30,7 @@ const manifest = {
   islands: {
     "./islands/AppBar.tsx": $AppBar,
     "./islands/Blogs.tsx": $Blogs,
+    "./islands/DynamicElement.tsx": $DynamicElement,
     "./islands/Experience.tsx": $Experience,
     "./islands/Hero.tsx": $Hero,
     "./islands/SpinningModel.tsx": $SpinningModel,

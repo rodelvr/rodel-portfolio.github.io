@@ -54,8 +54,13 @@ iconify-icon svg {
 }
 
 .job-experience.expanded {
-  max-height: 1000px;
+  max-height: 1500px;
   /* Expanded height */
+}
+
+.job-details {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
 }
 
 .horizontal-separator {

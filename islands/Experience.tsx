@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useRef } from "preact/hooks";
 
 interface JobExperience {
   title: string;
@@ -18,6 +18,11 @@ interface CompanyExperience {
 
 function JobDetails({ job }: { job: JobExperience }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   // Split the details by newlines to create paragraphs
   const detailsParagraphs = job.details
@@ -42,12 +47,18 @@ function JobDetails({ job }: { job: JobExperience }) {
       <p className="job-time-period mb-1">{jobTimePeriod}</p>
       <p className="job-location">{job.location}</p>
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={toggleExpand}
         className="btn btn-primary text-base-100 mt-2 btn-sm"
       >
         {isExpanded ? "Show less" : "Read more"}
       </button>
-      {isExpanded && detailsParagraphs}
+      <div
+        ref={detailsRef}
+        className="job-details"
+        style={{ maxHeight: isExpanded ? `${detailsRef.current?.scrollHeight}px` : 0 }}
+      >
+        {detailsParagraphs}
+      </div>
     </div>
   );
 }
@@ -62,7 +73,7 @@ export default function Experience() {
       jobs: [
         {
           title: "Founding Engineer",
-          timePeriod: "Jul 2023 - now",
+          timePeriod: "Jul 2023 - Jun 2024",
           location: "Utrecht, Netherlands",
           description: "Read more",
           details: `
