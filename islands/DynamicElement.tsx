@@ -14,7 +14,10 @@ interface ThreeJSComponentState {
 }
 
 class ThreeJSComponent
-  extends Component<Record<string | number | symbol, never>, ThreeJSComponentState> {
+  extends Component<
+    Record<string | number | symbol, never>,
+    ThreeJSComponentState
+  > {
   private containerRef = createRef<HTMLDivElement>();
   private theta: number = 0;
   private INTERSECTED: THREE.Mesh | null = null;
@@ -77,7 +80,10 @@ class ThreeJSComponent
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(globalThis.devicePixelRatio);
-    renderer.setSize(globalThis.innerWidth * 0.25, globalThis.innerHeight * 0.25);
+    renderer.setSize(
+      globalThis.innerWidth * 0.25,
+      globalThis.innerHeight * 0.25,
+    );
 
     if (this.containerRef.current) {
       this.containerRef.current.appendChild(renderer.domElement);
@@ -118,7 +124,10 @@ class ThreeJSComponent
       camera.updateProjectionMatrix();
     }
     if (renderer) {
-      renderer.setSize(globalThis.innerWidth * 0.25, globalThis.innerHeight * 0.25);
+      renderer.setSize(
+        globalThis.innerWidth * 0.25,
+        globalThis.innerHeight * 0.25,
+      );
     }
   };
 
