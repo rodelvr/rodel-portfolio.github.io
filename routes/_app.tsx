@@ -91,28 +91,39 @@ export default function App({ Component }: PageProps) {
         <title>Portfolio | {credentials.name}</title>
         <link rel="stylesheet" href="/styles.css" />
         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-EXLP2XMEYX"
-        >
-        </script>
-        <script
-          async
-          defer
-          src="https://www.googletagmanager.com/gtag/js?id=G-EXLP2XMEYX"
-        >
-        </script>
-        <script
-          defer
           dangerouslySetInnerHTML={{
             __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EXLP2XMEYX');
-    `,
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(function() {
+                var script = document.createElement('script');
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-EXLP2XMEYX';
+                script.async = true;
+                document.head.appendChild(script);
+
+                script.onload = function() {
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-EXLP2XMEYX');
+                };
+              });
+            } else {
+              // Fallback for browsers that do not support requestIdleCallback
+              var script = document.createElement('script');
+              script.src = 'https://www.googletagmanager.com/gtag/js?id=G-EXLP2XMEYX';
+              script.async = true;
+              document.head.appendChild(script);
+
+              script.onload = function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-EXLP2XMEYX');
+              };
+            }
+            `,
           }}
-        >
-        </script>
+        />
       </head>
       <body className="min-h-screen flex flex-col max-w-screen-xl mx-auto overflow-x-hidden">
         <header>
