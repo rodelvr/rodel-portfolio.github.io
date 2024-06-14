@@ -1,9 +1,6 @@
 import { Component, createRef } from "preact";
-import { h } from "preact";
 import * as THREE from "three";
 import Stats from "three/examples/jsm/libs/stats.module.js";
-
-interface ThreeJSComponentProps {}
 
 interface ThreeJSComponentState {
   stats: Stats | null;
@@ -17,12 +14,12 @@ interface ThreeJSComponentState {
 }
 
 class ThreeJSComponent
-  extends Component<ThreeJSComponentProps, ThreeJSComponentState> {
+  extends Component<Record<string | number | symbol, never>, ThreeJSComponentState> {
   private containerRef = createRef<HTMLDivElement>();
   private theta: number = 0;
   private INTERSECTED: THREE.Mesh | null = null;
 
-  constructor(props: ThreeJSComponentProps) {
+  constructor(props: undefined) {
     super(props);
     this.state = {
       stats: null,
@@ -37,9 +34,9 @@ class ThreeJSComponent
   }
 
   componentDidMount() {
-    const { pointer, radius, frustumSize } = this.state;
+    const { frustumSize } = this.state;
 
-    const aspect = window.innerWidth / window.innerHeight;
+    const aspect = globalThis.innerWidth / globalThis.innerHeight;
     const camera = new THREE.OrthographicCamera(
       frustumSize * aspect / -2,
       frustumSize * aspect / 2,
@@ -79,8 +76,8 @@ class ThreeJSComponent
     const raycaster = new THREE.Raycaster();
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth * 0.25, window.innerHeight * 0.25);
+    renderer.setPixelRatio(globalThis.devicePixelRatio);
+    renderer.setSize(globalThis.innerWidth * 0.25, globalThis.innerHeight * 0.25);
 
     if (this.containerRef.current) {
       this.containerRef.current.appendChild(renderer.domElement);
@@ -98,7 +95,7 @@ class ThreeJSComponent
     });
 
     document.addEventListener("pointermove", this.onPointerMove);
-    window.addEventListener("resize", this.onWindowResize);
+    globalThis.addEventListener("resize", this.onWindowResize);
     renderer.setAnimationLoop(this.animate);
   }
 
@@ -106,13 +103,13 @@ class ThreeJSComponent
     const { stats, renderer } = this.state;
     if (stats) document.body.removeChild(stats.dom);
     document.removeEventListener("pointermove", this.onPointerMove);
-    window.removeEventListener("resize", this.onWindowResize);
+    globalThis.removeEventListener("resize", this.onWindowResize);
     if (renderer) renderer.setAnimationLoop(null);
   }
 
   onWindowResize = () => {
     const { camera, renderer } = this.state;
-    const aspect = window.innerWidth / window.innerHeight;
+    const aspect = globalThis.innerWidth / globalThis.innerHeight;
     if (camera) {
       camera.left = -this.state.frustumSize * aspect / 2;
       camera.right = this.state.frustumSize * aspect / 2;
@@ -121,14 +118,14 @@ class ThreeJSComponent
       camera.updateProjectionMatrix();
     }
     if (renderer) {
-      renderer.setSize(window.innerWidth * 0.25, window.innerHeight * 0.25);
+      renderer.setSize(globalThis.innerWidth * 0.25, globalThis.innerHeight * 0.25);
     }
   };
 
   onPointerMove = (event: MouseEvent) => {
     const pointer = new THREE.Vector2();
-    pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-    pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    pointer.x = (event.clientX / globalThis.innerWidth) * 2 - 1;
+    pointer.y = -(event.clientY / globalThis.innerHeight) * 2 + 1;
     this.setState({ pointer });
   };
 
@@ -138,7 +135,7 @@ class ThreeJSComponent
   };
 
   renderScene = () => {
-    const { camera, scene, raycaster, renderer, pointer, radius } = this.state;
+    const { camera, scene, raycaster, renderer, pointer } = this.state;
 
     this.theta += 0.1;
 
