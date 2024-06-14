@@ -13,11 +13,10 @@ interface ThreeJSComponentState {
   frustumSize: number;
 }
 
-class ThreeJSComponent
-  extends Component<
-    Record<string | number | symbol, never>,
-    ThreeJSComponentState
-  > {
+class ThreeJSComponent extends Component<
+  Record<string | number | symbol, never>,
+  ThreeJSComponentState
+> {
   private containerRef = createRef<HTMLDivElement>();
   private theta: number = 0;
   private INTERSECTED: THREE.Mesh | null = null;
