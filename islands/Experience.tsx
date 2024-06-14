@@ -1,4 +1,4 @@
-import { useState, useRef } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 
 interface JobExperience {
   title: string;
@@ -55,7 +55,9 @@ function JobDetails({ job }: { job: JobExperience }) {
       <div
         ref={detailsRef}
         className="job-details"
-        style={{ maxHeight: isExpanded ? `${detailsRef.current?.scrollHeight}px` : 0 }}
+        style={{
+          maxHeight: isExpanded ? `${detailsRef.current?.scrollHeight}px` : 0,
+        }}
       >
         {detailsParagraphs}
       </div>

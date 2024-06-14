@@ -60,7 +60,8 @@ iconify-icon svg {
 
 .job-details {
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
+  transition: max-height 0.3s ease-in-out;
+  /* Add transition for max-height */
 }
 
 .horizontal-separator {
