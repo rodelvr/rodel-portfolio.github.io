@@ -12,13 +12,13 @@ export default function Strengths() {
       title: "Passion for writing content",
       description:
         "I enjoy writing blogs and other material to share my knowledge and experience.",
-      image: "/img/writing.jpeg",
+      image: "/img/writing.webp",
     },
     {
       title: "Various perspectives",
       description:
         "I have worked in different environments (start-up, scale-up, corporates) and roles (engineer, tech lead, manager).",
-      image: "/img/perspectives.jpeg",
+      image: "/img/perspectives.webp",
     },
     {
       title: "Innovation through persistence",

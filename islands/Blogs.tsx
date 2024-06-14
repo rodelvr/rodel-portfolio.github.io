@@ -38,7 +38,7 @@ export default function Blogs() {
         "https://medium.com/@rodelvanrooijen/embedded-analytics-in-b2b-saas-a-comparison-f35522cd1605",
       type: "Analytics",
       icon: "fluent-mdl2:analytics-view",
-      image: "img/embeddable.png",
+      image: "img/embeddable.webp",
     },
     {
       title: "Deploying Airflow",

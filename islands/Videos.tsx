@@ -13,7 +13,7 @@ export default function Videos() {
       description:
         "How the data platform was built and how ML is managed at Adyen.",
       link: "https://www.youtube.com/watch?v=lirZVxWiczw",
-      thumbnail: "img/thumbnail_youtube1.jpeg",
+      thumbnail: "img/thumbnail_youtube1.webp",
       category: "youtube",
     },
     // Add more video objects as needed
