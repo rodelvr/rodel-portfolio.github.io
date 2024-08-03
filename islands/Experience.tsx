@@ -68,6 +68,23 @@ function JobDetails({ job }: { job: JobExperience }) {
 export default function Experience() {
   const experiences: CompanyExperience[] = [
     {
+      company: "Achmea",
+      companyLocation: "Apeldoorn, Netherlands",
+      logo: "/logos/achmea_logo copy.png",
+      website: "https://www.achmea.nl/",
+      jobs: [
+        {
+          title: "Machine Learning Engineer",
+          timePeriod: "Jul 2024 - now",
+          location: "Utrecht, Netherlands",
+          description: "Read more",
+          details: `
+            I'm shaping and building a next-generation MLOps platform to power the creation and deployment of the latest ML models for insurance pricing.
+          `,
+        },
+      ],
+    },
+    {
       company: "Solvimon",
       companyLocation: "Utrecht, Netherlands",
       logo: "/logos/solvimon_logo.jpeg",
