@@ -9,14 +9,21 @@ interface Video {
 export default function Videos() {
   const videos: Video[] = [
     {
-      title: "Building a Modern FinTech Big Data Infrastructure",
+      title: "Building Big Data Infrastructure (Spark + AI Summit 2019)",
       description:
         "How the data platform was built and how ML is managed at Adyen.",
       link: "https://www.youtube.com/watch?v=lirZVxWiczw",
       thumbnail: "img/thumbnail_youtube1.webp",
       category: "youtube",
     },
-    // Add more video objects as needed
+    {
+      title: "Building a Data Platform from scratch (PyData Amsterdam 2024)",
+      description:
+        "Sharing my experience on building a data platform from scratch (video will follow).",
+      link: "/docs/Building a Data Platform from scratch - PyData Amsterdam 2024.pdf",
+      thumbnail: "img/pydata_2024.jpeg",
+      category: "youtube",
+    },
   ];
 
   return (

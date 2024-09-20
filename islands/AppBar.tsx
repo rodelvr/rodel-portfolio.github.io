@@ -38,7 +38,7 @@ export default function AppBar() {
         <li>
           <a
             class="btn btn-primary text-base-100"
-            href="/cv.pdf"
+            href="/rodel_van_rooijen_cv.pdf"
             download
           >
             Download CV

@@ -68,18 +68,35 @@ function JobDetails({ job }: { job: JobExperience }) {
 export default function Experience() {
   const experiences: CompanyExperience[] = [
     {
+      company: "Palm",
+      companyLocation: "Remote",
+      logo: "/logos/usepalm_logo.jpeg",
+      website: "https://www.usepalm.com/",
+      jobs: [
+        {
+          title: "Data & AI Lead",
+          timePeriod: "Nov 2024 - now",
+          location: "Remote (Netherlands)",
+          description: "Read more",
+          details: `
+            I'm helping shape data and AI at Palm to build the best treasury management platform for enterprise scale customers.
+          `,
+        },
+      ],
+    },
+    {
       company: "Achmea",
       companyLocation: "Apeldoorn, Netherlands",
       logo: "/logos/achmea_logo copy.png",
       website: "https://www.achmea.nl/",
       jobs: [
         {
-          title: "Machine Learning Engineer",
-          timePeriod: "Jul 2024 - now",
-          location: "Utrecht, Netherlands",
+          title: "Senior Machine Learning Engineer",
+          timePeriod: "Jul 2024 - Oct 2024",
+          location: "Apeldoorn, Netherlands",
           description: "Read more",
           details: `
-            I'm shaping and building a next-generation MLOps platform to power the creation and deployment of the latest ML models for insurance pricing.
+            I've helped shape a next-generation MLOps platform to power the creation and deployment of the latest ML models for insurance pricing.
           `,
         },
       ],
