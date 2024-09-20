@@ -20,7 +20,8 @@ export default function Videos() {
       title: "Building a Data Platform from scratch (PyData Amsterdam 2024)",
       description:
         "Sharing my experience on building a data platform from scratch (video will follow).",
-      link: "/docs/Building a Data Platform from scratch - PyData Amsterdam 2024.pdf",
+      link:
+        "/docs/Building a Data Platform from scratch - PyData Amsterdam 2024.pdf",
       thumbnail: "img/pydata_2024.jpeg",
       category: "youtube",
     },
