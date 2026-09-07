@@ -79,6 +79,18 @@ export const technologies: Technology[] = [
     category: DE,
   },
   {
+    name: "dlt",
+    icon: "simple-icons:dlthub",
+    url: "https://dlthub.com/",
+    category: DE,
+  },
+  {
+    name: "ClickHouse",
+    icon: "devicon:clickhouse",
+    url: "https://clickhouse.com/",
+    category: DE,
+  },
+  {
     name: "Jupyter",
     icon: "logos:jupyter",
     url: "https://jupyter.org",
