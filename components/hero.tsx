@@ -54,9 +54,10 @@ export default function Hero() {
             <TypingAnimation strings={["Hi!", "I'm Rodel."]} />
           </h1>
           <p class="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            I'm an engineer that specialised in anything related to data. I
-            build data platforms, ship machine learning to production and lead
-            the teams that do it.
+            I'm an engineer turned CTO with over a decade across data, machine
+            learning, full-stack engineering and leadership. I've built products
+            and teams at a bank, a global payments company and start-ups, and
+            today I lead engineering at an AI-native fintech.
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <ButtonLink href={site.cv} download size="lg">

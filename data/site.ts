@@ -1,7 +1,7 @@
 export const site = {
   name: "Rodel van Rooijen",
   firstName: "Rodel",
-  title: "Engineer | Data & ML",
+  title: "Engineer & CTO",
   url: "https://rodel.dev/",
   description:
     "Explore Rodel van Rooijen's portfolio website showcasing experience and projects.",
