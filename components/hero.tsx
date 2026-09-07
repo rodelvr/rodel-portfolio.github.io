@@ -15,7 +15,7 @@ function heroStats() {
   const years = yearsSince(experience.flatMap((company) => company.jobs));
   return [
     { value: `${years}+`, label: "Years in data & ML" },
-    { value: "3B+", label: "Live ML predictions shipped" },
+    { value: "3B+", label: "Live AI/ML model predictions shipped" },
     {
       value: `${mediumPosts.length + newsletterPosts.length}`,
       label: "Blog posts",
