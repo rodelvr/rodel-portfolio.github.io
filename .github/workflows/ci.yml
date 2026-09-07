@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install dependencies
+        run: deno install
+
+      - name: Check code formatting
+        run: deno fmt --check
+
+      - name: Lint code
+        run: deno lint
+
+      - name: Type check
+        run: deno check
+
+      - name: Test
+        run: deno test
+
+      - name: Build
+        run: deno task build
+
+      - name: Start server
+        run: deno task preview &
+
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          temporaryPublicStorage: true
+          urls: |
+            http://localhost:8000

@@ -1,0 +1,19 @@
+#!/bin/sh
+# Formats and lints the staged files before every commit, then re-stages them.
+# Enable once per clone with: deno task hooks
+set -e
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$staged" ] && exit 0
+
+formatted=$(printf '%s\n' "$staged" | grep -E '\.(ts|tsx|js|jsx|json|jsonc|md|css|ya?ml)$' || true)
+linted=$(printf '%s\n' "$staged" | grep -E '\.(ts|tsx|js|jsx)$' || true)
+
+if [ -n "$formatted" ]; then
+  printf '%s\n' "$formatted" | xargs deno fmt --quiet
+  printf '%s\n' "$formatted" | xargs git add
+fi
+
+if [ -n "$linted" ]; then
+  printf '%s\n' "$linted" | xargs deno lint
+fi
